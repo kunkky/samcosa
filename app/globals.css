@@ -13,8 +13,13 @@
   box-sizing: border-box;
 }
 
+html,
 body {
+  padding: 0;
   margin: 0;
+}
+
+body {
   min-height: 100vh;
   font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--cyan-50);

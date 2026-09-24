@@ -1,64 +1,72 @@
 # Samcosa Water — Order (QR → Form → WhatsApp)
 
-A static, no-backend order form. Customers scan a QR code, fill in their order,
-and it opens WhatsApp with the order pre-filled and addressed to the business
-number — they just tap Send. No server, database, or WhatsApp Business API
-required.
+A Next.js (App Router, TypeScript) order form. Customers scan a QR code,
+fill in their order, and it opens WhatsApp with the order pre-filled and
+addressed to the business number — they just tap Send. No database or
+WhatsApp Business API required.
 
-## Files
+Live at: https://samcosa.netlify.app/
 
-- `index.html` / `style.css` / `script.js` — the order form.
-- `config.js` — **edit this** to set the business name, WhatsApp number and
-  the list of products.
-- `qr.html` — generates a scannable QR code that points at `index.html`,
-  wherever this is hosted. Auto-detects the correct URL once deployed.
-- `assets/logo.svg` — the Samcosa Water wordmark, used in the page headers.
-- `assets/icon.svg` — a droplet mark used as the favicon.
-- `robots.txt` / `sitemap.xml` — basic SEO files for search engines.
+## Structure
 
-## Try it locally
+- `app/page.tsx` — the order form page (server component: heading, copy,
+  footer) rendering `components/OrderForm.tsx` (client component: the
+  interactive form + WhatsApp submit logic).
+- `app/qr/page.tsx` + `components/QrGenerator.tsx` — the QR code page,
+  built with [`qrcode.react`](https://www.npmjs.com/package/qrcode.react).
+  Defaults to the deployed site's URL; not indexed by search engines.
+- `app/layout.tsx` — SEO: title/description, Open Graph, Twitter card,
+  canonical URL, and JSON-LD `LocalBusiness` schema.
+- `app/sitemap.ts` / `app/robots.ts` — generated `sitemap.xml` / `robots.txt`.
+- `app/icon.svg` — favicon (Next's file-based favicon convention).
+- `lib/config.ts` — **edit this** to change the business name, WhatsApp
+  number, product list, or site URL.
+- `public/assets/logo.svg` — the Samcosa Water wordmark used in the header.
 
-Open `index.html` directly in a browser, or serve the folder so relative
-links behave the same as in production:
+## Run locally
 
 ```
-npx serve pure-water-order
+npm install
+npm run dev
 ```
 
-Fill the form and submit — it will try to open WhatsApp with the order text.
-(On desktop this opens WhatsApp Web; on a phone it opens the WhatsApp app.)
+Open http://localhost:3000. Fill the form and submit — it opens WhatsApp
+with the order text (WhatsApp Web on desktop, the app on a phone).
 
 ## Configure
 
-Edit `config.js`:
+Edit `lib/config.ts`:
 
-```js
-const BUSINESS_NAME = "Samcosa Water";
-const BUSINESS_WHATSAPP_NUMBER = "2349162429428"; // digits only, country code, no +
-const PRODUCTS = [ "Sachet water (bag of 20)", "Bottled water - 75cl", ... ];
+```ts
+export const BUSINESS_NAME = "Samcosa Water";
+export const BUSINESS_WHATSAPP_NUMBER = "2349162429428"; // digits only, country code, no +
+export const PRODUCTS = ["Sachet water (bag of 20)", "Bottled water - 75cl", ...];
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://samcosa.netlify.app";
 ```
 
-## Deploy (pick one, all free)
+If the site ever moves to a different domain, either update the
+`SITE_URL` fallback above or set the `NEXT_PUBLIC_SITE_URL` environment
+variable in Netlify's site settings — it feeds the SEO tags, the JSON-LD,
+and the QR code's default value.
 
-- **Netlify Drop** — drag the `pure-water-order` folder onto https://app.netlify.com/drop
-- **Vercel** — `npx vercel` from inside `pure-water-order`
-- **GitHub Pages** — push this folder to a repo and enable Pages on it
+## Deploy — Netlify via GitHub
 
-Any static host works — there's no build step.
+This repo includes `netlify.toml`, which tells Netlify to build with
+`@netlify/plugin-nextjs` (Netlify's official Next.js runtime — supports the
+App Router, server components, etc., out of the box).
 
-Once you have a real domain, search-and-replace `your-domain.com` with it in
-`index.html`, `robots.txt` and `sitemap.xml` (canonical link, Open Graph/
-Twitter tags, JSON-LD, and sitemap URL) so the SEO tags point at the live
-site instead of the placeholder.
+1. On [Netlify](https://app.netlify.com), **Add new site → Import an
+   existing project → GitHub**, and pick the `kunkky/samcosa` repo.
+2. Build command `npm run build` and the Next.js plugin are already
+   configured via `netlify.toml` — no manual build settings needed.
+3. Every push to `main` redeploys automatically.
 
 ## Generate the QR code
 
-After deploying, open `<your-domain>/qr.html` in a browser. It automatically
-builds the QR for `<your-domain>/index.html`. Print that page or display it
-on a screen at the point of sale.
-
-If you need a QR for a different URL, paste it into the input on that page
-and click Regenerate.
+Open `/qr` on the deployed site (e.g. https://samcosa.netlify.app/qr). It
+builds a QR code for the site's home page automatically. Print that page or
+display it at the point of sale. To generate a QR for a different URL,
+paste it into the input on that page and click Regenerate.
 
 ## How orders arrive
 

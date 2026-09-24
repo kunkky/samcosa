@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /qr.html
-
-Sitemap: https://your-domain.com/sitemap.xml
