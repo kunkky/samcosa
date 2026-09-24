@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Samcosa Water &mdash; Order QR Code</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card qr-card">
+    <header class="brand">
+      <img src="assets/logo.svg" alt="Samcosa Water" class="logo" width="220" height="85" />
+    </header>
+    <h1>Scan to order</h1>
+    <p class="subtitle">Print this or display it at the shop.</p>
+
+    <div id="qr-canvas" class="qr-canvas"></div>
+    <div class="qr-url" id="qr-url"></div>
+
+    <label for="url-input" style="margin-top: 20px">Or generate a QR for a different URL</label>
+    <input type="url" id="url-input" placeholder="https://your-domain.com/index.html" />
+
+    <div class="qr-actions">
+      <button id="regenerate-btn" type="button">Regenerate</button>
+      <button id="print-btn" type="button">Print</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const canvasHolder = document.getElementById("qr-canvas");
+    const urlLabel = document.getElementById("qr-url");
+    const urlInput = document.getElementById("url-input");
+
+    // Defaults to index.html next to this page on whatever domain it's
+    // hosted on, so the QR is correct automatically once deployed.
+    const defaultUrl = new URL("index.html", window.location.href).toString();
+    urlInput.value = defaultUrl;
+
+    function renderQr(url) {
+      canvasHolder.innerHTML = "";
+      try {
+        new QRCode(canvasHolder, {
+          text: url,
+          width: 260,
+          height: 260,
+          colorDark: "#0b4a57",
+          colorLight: "#ffffff",
+        });
+        urlLabel.textContent = url;
+      } catch (error) {
+        urlLabel.textContent = "Could not generate QR code: " + error.message;
+      }
+    }
+
+    document.getElementById("regenerate-btn").addEventListener("click", function () {
+      const value = urlInput.value.trim();
+      if (value) renderQr(value);
+    });
+
+    document.getElementById("print-btn").addEventListener("click", function () {
+      window.print();
+    });
+
+    renderQr(defaultUrl);
+  </script>
+</body>
+</html>

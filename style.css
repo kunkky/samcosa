@@ -1,0 +1,194 @@
+:root {
+  --teal-900: #0b4a57;
+  --teal-800: #0e5e6e;
+  --cyan-500: #18aec4;
+  --cyan-600: #1497ab;
+  --cyan-50: #eaf8fa;
+  --gray-700: #374151;
+  --gray-300: #d1d5db;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--cyan-50);
+  color: var(--gray-700);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 48px;
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(11, 74, 87, 0.14);
+  padding: 28px 24px 24px;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--teal-900);
+}
+
+.subtitle {
+  margin: 4px 0 22px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 16px 0 6px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cyan-500);
+  box-shadow: 0 0 0 3px rgba(24, 174, 196, 0.2);
+}
+
+.qty-row {
+  display: flex;
+  gap: 12px;
+}
+
+.qty-row > div:first-child {
+  flex: 2;
+}
+
+.qty-row > div:last-child {
+  flex: 1;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--cyan-500), var(--teal-900));
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, var(--cyan-600), var(--teal-800));
+}
+
+button svg {
+  flex-shrink: 0;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 13px;
+  margin-top: 4px;
+  display: none;
+}
+
+.error.visible {
+  display: block;
+}
+
+.site-footer {
+  max-width: 440px;
+  margin: 18px auto 0;
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* QR page */
+.qr-card {
+  text-align: center;
+}
+
+.qr-canvas {
+  width: 260px;
+  height: 260px;
+  margin: 20px auto;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.qr-url {
+  font-size: 13px;
+  word-break: break-all;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+.qr-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.qr-actions button {
+  margin-top: 0;
+  background: var(--teal-900);
+}
+
+.qr-actions button:hover {
+  background: var(--teal-800);
+}

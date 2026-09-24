@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Samcosa Water icon">
+  <defs>
+    <clipPath id="drop">
+      <path d="M32,4 C32,4 12,28 12,42 C12,54 21,60 32,60 C43,60 52,54 52,42 C52,28 32,4 32,4 Z"/>
+    </clipPath>
+  </defs>
+  <path d="M32,4 C32,4 12,28 12,42 C12,54 21,60 32,60 C43,60 52,54 52,42 C52,28 32,4 32,4 Z" fill="#0B4A57"/>
+  <g clip-path="url(#drop)">
+    <path d="M4,44 Q12,38 20,44 T36,44 T52,44 T68,44" stroke="#18AEC4" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M4,52 Q12,46 20,52 T36,52 T52,52 T68,52" stroke="#18AEC4" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.75"/>
+  </g>
+</svg>

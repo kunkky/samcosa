@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 145" width="375" height="145" role="img" aria-label="Samcosa Water">
+  <text x="8" y="64" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="800" letter-spacing="-1" fill="#0B4A57">SAMCOSA</text>
+
+  <g stroke="#18AEC4" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M10,116 Q19,109 28,116 T46,116 T64,116 T82,116"/>
+    <path d="M10,126 Q19,119 28,126 T46,126 T64,126 T82,126"/>
+    <path d="M10,136 Q19,129 28,136 T46,136 T64,136 T82,136"/>
+  </g>
+
+  <text x="100" y="140" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#18AEC4">WATER</text>
+
+  <g stroke="#18AEC4" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M290,116 Q299,109 308,116 T326,116 T344,116 T362,116"/>
+    <path d="M290,126 Q299,119 308,126 T326,126 T344,126 T362,126"/>
+    <path d="M290,136 Q299,129 308,136 T326,136 T344,136 T362,136"/>
+  </g>
+</svg>
